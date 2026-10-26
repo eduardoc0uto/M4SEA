@@ -1,0 +1,51 @@
+{
+  "capacity_kWh": {
+    "value": null,
+    "unit": "kWh",
+    "status": "unknown",
+    "source": "",
+    "description": "capacity_kWh"
+  },
+  "SOC": {
+    "value": null,
+    "unit": "%",
+    "status": "unknown",
+    "source": "",
+    "description": "SOC"
+  },
+  "voltage": {
+    "value": null,
+    "unit": "V",
+    "status": "unknown",
+    "source": "",
+    "description": "voltage"
+  },
+  "max_charge_power": {
+    "value": null,
+    "unit": "kW",
+    "status": "unknown",
+    "source": "",
+    "description": "max_charge_power"
+  },
+  "max_discharge_power": {
+    "value": null,
+    "unit": "kW",
+    "status": "unknown",
+    "source": "",
+    "description": "max_discharge_power"
+  },
+  "efficiency": {
+    "value": null,
+    "unit": "",
+    "status": "unknown",
+    "source": "",
+    "description": "efficiency"
+  },
+  "SOH": {
+    "value": null,
+    "unit": "%",
+    "status": "unknown",
+    "source": "",
+    "description": "SOH"
+  }
+}

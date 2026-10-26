@@ -1,0 +1,74 @@
+{
+  "water_depth": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "water depth",
+    "implemented": false
+  },
+  "wind_speed": {
+    "value": null,
+    "unit": "m/s",
+    "status": "unknown",
+    "source": "",
+    "description": "wind speed",
+    "implemented": false
+  },
+  "wind_direction": {
+    "value": null,
+    "unit": "deg",
+    "status": "unknown",
+    "source": "",
+    "description": "wind direction",
+    "implemented": false
+  },
+  "wave_hs": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "wave hs",
+    "implemented": false
+  },
+  "wave_tp": {
+    "value": null,
+    "unit": "s",
+    "status": "unknown",
+    "source": "",
+    "description": "wave tp",
+    "implemented": false
+  },
+  "wave_direction": {
+    "value": null,
+    "unit": "deg",
+    "status": "unknown",
+    "source": "",
+    "description": "wave direction",
+    "implemented": false
+  },
+  "current_speed": {
+    "value": null,
+    "unit": "m/s",
+    "status": "unknown",
+    "source": "",
+    "description": "current speed",
+    "implemented": false
+  },
+  "current_direction": {
+    "value": null,
+    "unit": "deg",
+    "status": "unknown",
+    "source": "",
+    "description": "current direction",
+    "implemented": false
+  },
+  "turbulence": {
+    "value": null,
+    "unit": "",
+    "status": "unknown",
+    "source": "",
+    "description": "turbulence",
+    "implemented": false
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "platform_mass": {
+    "value": null,
+    "unit": "kg",
+    "status": "unknown",
+    "source": "",
+    "description": "platform mass",
+    "implemented": false
+  },
+  "cg_x": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "cg x",
+    "implemented": false
+  },
+  "cg_y": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "cg y",
+    "implemented": false
+  },
+  "cg_z": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "cg z",
+    "implemented": false
+  },
+  "inertia_x": {
+    "value": null,
+    "unit": "kg m\u00b2",
+    "status": "unknown",
+    "source": "",
+    "description": "inertia x",
+    "implemented": false
+  },
+  "inertia_y": {
+    "value": null,
+    "unit": "kg m\u00b2",
+    "status": "unknown",
+    "source": "",
+    "description": "inertia y",
+    "implemented": false
+  },
+  "inertia_z": {
+    "value": null,
+    "unit": "kg m\u00b2",
+    "status": "unknown",
+    "source": "",
+    "description": "inertia z",
+    "implemented": false
+  },
+  "length": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "length",
+    "implemented": false
+  },
+  "width": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "width",
+    "implemented": false
+  },
+  "height": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "height",
+    "implemented": false
+  }
+}

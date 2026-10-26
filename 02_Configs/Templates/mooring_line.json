@@ -1,0 +1,66 @@
+{
+  "id": "LINE_ID",
+  "fairlead": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "fairlead"
+  },
+  "anchor": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "anchor"
+  },
+  "unstretched_length": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "unstretched_length"
+  },
+  "diameter": {
+    "value": null,
+    "unit": "m",
+    "status": "unknown",
+    "source": "",
+    "description": "diameter"
+  },
+  "mass_density": {
+    "value": null,
+    "unit": "kg/m",
+    "status": "unknown",
+    "source": "",
+    "description": "mass_density"
+  },
+  "EA": {
+    "value": null,
+    "unit": "N",
+    "status": "unknown",
+    "source": "",
+    "description": "EA"
+  },
+  "pretension": {
+    "value": null,
+    "unit": "N",
+    "status": "unknown",
+    "source": "",
+    "description": "pretension"
+  },
+  "Cd": {
+    "value": null,
+    "unit": "",
+    "status": "unknown",
+    "source": "",
+    "description": "Cd"
+  },
+  "Ca": {
+    "value": null,
+    "unit": "",
+    "status": "unknown",
+    "source": "",
+    "description": "Ca"
+  }
+}

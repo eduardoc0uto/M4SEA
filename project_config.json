@@ -1,0 +1,7 @@
+{
+  "structure_name": "WindFloat_Research",
+  "baseline": "01_Models/WindFloat_Research",
+  "main_fst": "Main.fst",
+  "openfast_executable": "C:\\Users\\Administrador\\Documents\\OpenFAST\\M4SEA_baseline\\bin\\OpenFAST_Double_Release.exe",
+  "mappings": {}
+}
