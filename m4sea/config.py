@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import uuid
+from .numbers import normalize_parameters
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUSES = ['company_confirmed', 'public_confirmed', 'source', 'derived', 'adapted', 'assumed', 'calibrated', 'unvalidated', 'unknown']
@@ -9,7 +10,7 @@ COLORS = dict(zip(STATUSES, ['🟢', '🟢', '🔵', '🟡', '🟡', '🟠', '�
 
 def load_json(path: Path) -> dict:
     with path.open(encoding='utf-8') as stream:
-        return json.load(stream)
+        return normalize_parameters(json.load(stream))
 
 def resolve_path(root: Path, value: str) -> Path:
     path = Path(value).expanduser()
@@ -27,6 +28,7 @@ def load_configuration(root: Path = ROOT) -> dict:
     return {'project': project, **{name: load_json(folder / f'{name}.json') for name in ['structure', 'environment', 'mooring']}}
 
 def save_working(config: dict, root: Path = ROOT) -> Path:
+    config = normalize_parameters(config)
     folder = root / '02_Configs/Working'
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / f'working_{uuid.uuid4().hex}.json'

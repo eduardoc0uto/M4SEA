@@ -3,6 +3,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 import math
 from .config import resolve_path, inside, STATUSES
+from .numbers import parse_number
 
 @dataclass
 class Message:
@@ -26,7 +27,11 @@ def validate(config: dict, root: Path, execution: bool = False) -> list[Message]
             add('ERROR', f'{name}: parâmetro obrigatório inexistente.')
     for group in ['structure', 'environment']:
         for name, p in config[group].items():
-            v = p.get('value')
+            try:
+                v = parse_number(p.get('value'))
+            except ValueError as exc:
+                add('ERROR', f'{name}: {exc}')
+                continue
             if p.get('status') not in STATUSES:
                 add('ERROR', f'{name}: estado inválido.')
             if v is None:
@@ -40,7 +45,10 @@ def validate(config: dict, root: Path, execution: bool = False) -> list[Message]
                 add('ERROR', f'{name}: valor fisicamente inválido.')
             if not p.get('source') or p.get('status') in ['unknown','unvalidated','assumed']:
                 add('WARNING', f'{name}: origem/validação pendente.')
-    depth = config['environment'].get('water_depth', {}).get('value')
+    try:
+        depth = parse_number(config['environment'].get('water_depth', {}).get('value'))
+    except ValueError:
+        depth = None  # The field error was already reported above.
     ids = set()
     for line in config['mooring']['lines']:
         ident = line.get('id')
@@ -52,7 +60,8 @@ def validate(config: dict, root: Path, execution: bool = False) -> list[Message]
                 p = line[key]
                 if p.get('status') not in STATUSES:
                     raise ValueError(f'{key}: estado inválido')
-                return p['value']
+                value = p['value']
+                return [parse_number(v) for v in value] if isinstance(value, list) else parse_number(value)
             anchor, fairlead = val('anchor'), val('fairlead')
             length, ea = val('unstretched_length'), val('EA')
             nums = [*anchor, *fairlead, length, ea]
@@ -66,7 +75,7 @@ def validate(config: dict, root: Path, execution: bool = False) -> list[Message]
                 add('ERROR', f'Linha {ident}: anchor incompatível com seabed Z = -water_depth.')
             for key in ['diameter','mass_density','Cd','Ca','pretension']:
                 p = line.get(key,{})
-                value = p.get('value')
+                value = parse_number(p.get('value'))
                 if value is None:
                     add('WARNING', f'Linha {ident}: {key} desconhecido.')
                 elif not isinstance(value,(int,float)) or not math.isfinite(value) or value < 0 or (key in ['diameter','mass_density'] and value == 0):

@@ -147,3 +147,18 @@ def test_required_missing(project):
     root,c = project
     del c['structure']['platform_mass']
     assert any(m.severity == 'ERROR' and 'obrigatório inexistente' in m.text for m in validate(c,root))
+
+
+def test_scientific_values_written_to_case_as_numbers(project):
+    root, config = project
+    config['structure']['platform_mass']['value'] = '5.86450E8'
+    config['environment']['water_depth']['value'] = '1E2'
+    (root/'baseline/ElastoDyn.dat').write_text('1.0 PtfmMass - mass\n2.0 OtherParam - dummy\n3.0 AnotherParam - dummy\n')
+    config['project']['mappings'] = {'structure.platform_mass': {'file':'ElastoDyn.dat','field':'PtfmMass'}}
+    case = generate_case(config, root)
+    snapshot = json.loads((case/'config_snapshot.json').read_text())
+    assert snapshot['structure']['platform_mass']['value'] == 586450000.0
+    assert isinstance(snapshot['structure']['platform_mass']['value'], float)
+    from openfast_toolbox.io import FASTInputFile
+    assert FASTInputFile(str(case/'ElastoDyn.dat'))['PtfmMass'] == 586450000.0
+    assert config['structure']['platform_mass']['value'] == '5.86450E8'

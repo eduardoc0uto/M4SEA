@@ -60,6 +60,12 @@ Os diretórios vazios são criados quando necessários; Git não preserva diret�
 
 Os nomes e a localização variam com a versão do OpenFAST. Só parâmetros com mapping são escritos, usando `FASTInputFile`; os restantes são **apenas armazenados**. As unidades não são convertidas automaticamente. Não existem mappings de tabelas MoorDyn nesta versão.
 
+### Introduzir números
+
+Todos os campos numéricos aceitam inteiros, decimais e notação científica com `E` ou `e`, como `5.86450E8`, `1E-3` e `-3.2e6`. Use ponto como separador decimal. Em Structure/Environment, a coluna `value` é do tipo float; o campo «Valor numérico (opcional)» permite também escrever expoentes para o parâmetro selecionado, aplicados ao submeter o formulário. Na calibração, escreva os números diretamente nos campos de texto.
+
+Os valores são convertidos com `float()` antes das regras físicas. Um número negativo válido pode continuar a ser recusado por uma regra física, por exemplo massa negativa. Entradas vazias permanecem desconhecidas (`null`); valores inválidos, NaN e infinitos são recusados. Em JSON, prefira números sem aspas (`"value": 5.86450E8`); strings numéricas antigas nos campos `value` também são convertidas. A gravação preserva valores numéricos, incluindo as coordenadas XYZ, sem alterar fontes, estados ou IDs.
+
 5. Em Mooring, edite uma lista JSON com número variável de linhas. Use `02_Configs/Templates/mooring_line.json`; `anchor.value` e `fairlead.value` são vetores `[x,y,z]`. Convenção: Z positivo para cima e seabed em `-water_depth`, tolerância geométrica 0,1 m. Não preencha coordenadas desconhecidas com zeros. Cada propriedade contém metadados de origem/estado.
 6. Execute Validate Configuration. ERROR bloqueia geração/execução; WARNING permite continuar mediante reconhecimento explícito. Confira especialmente os parâmetros apenas armazenados.
 7. Save Working Configuration preserva um snapshot fora do baseline. Generate Case copia o baseline para um ID único, escreve alterações apenas na cópia, guarda configuração e hashes. Inputs referenciados devem estar dentro da cópia; symlinks e referências externas conhecidas são recusados. Outputs `.outb` antigos copiados são removidos **apenas do caso**, para não serem confundidos com novos resultados.

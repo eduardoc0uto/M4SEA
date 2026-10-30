@@ -2,12 +2,13 @@
 from pathlib import Path
 from openfast_toolbox.io import FASTInputFile, FASTOutputFile
 from .config import inside
+from .numbers import parse_number
 
 def apply_parameters(case: Path, config: dict) -> None:
     files = {}
     for dotted, mapping in config['project'].get('mappings', {}).items():
         group, name = dotted.split('.', 1)
-        value = config[group][name]['value']
+        value = parse_number(config[group][name]['value'])
         if value is None:
             raise ValueError(f'{dotted}: valor desconhecido.')
         path = inside(case, mapping['file'])

@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 from .config import resolve_path, inside, load_json
 from .validation import validate
 from .openfast import apply_parameters, read_output, metrics
+from .numbers import normalize_parameters
 
 def write_json(path, data):
     path.write_text(json.dumps(data, indent=2, allow_nan=False), encoding='utf-8')
@@ -20,6 +21,7 @@ def manifest(folder: Path):
     return {str(p.relative_to(folder)): hashlib.sha256(p.read_bytes()).hexdigest() for p in folder.rglob('*') if p.is_file()}
 
 def generate_case(config: dict, root: Path) -> Path:
+    config = normalize_parameters(config)
     errors = [m.text for m in validate(config, root, execution=True) if m.severity == 'ERROR']
     if errors:
         raise ValueError('\n'.join(errors))

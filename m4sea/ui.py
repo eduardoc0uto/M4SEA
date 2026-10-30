@@ -8,6 +8,7 @@ from .validation import validate
 from .cases import generate_case, run_case
 from .ui_editors import parameter_editor, mooring_editor
 from .ui_results import results
+from .numbers import parse_number
 
 @st.cache_resource
 def executor():
@@ -117,12 +118,17 @@ def calibration():
     with st.form('calibration'):
         target_parameter = st.text_input('Target parameter')
         metric = st.text_input('Target metric / unidade')
-        target = st.number_input('Target value',value=None)
-        current = st.number_input('Current metric',value=None)
+        target_text = st.text_input('Target value', placeholder='Ex.: 1E-3')
+        current_text = st.text_input('Current metric', placeholder='Ex.: 23.19')
         adjustable = st.text_input('Parâmetro ajustável')
-        lower = st.number_input('Limite mínimo',value=None)
-        upper = st.number_input('Limite máximo',value=None)
+        lower_text = st.text_input('Limite mínimo', placeholder='Ex.: -3.2e6')
+        upper_text = st.text_input('Limite máximo', placeholder='Ex.: 2.13E9')
         if st.form_submit_button('Save Calibration Trial'):
+            try:
+                target, current, lower, upper = map(parse_number, [target_text, current_text, lower_text, upper_text])
+            except ValueError as exc:
+                st.error(str(exc))
+                return
             if lower is not None and upper is not None and lower > upper:
                 st.error('Limites inválidos.')
             else:
